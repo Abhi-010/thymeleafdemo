@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+</head>
+
+<body>
+<h4>Student Registration Form</h4>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="POST" >
+
+        First Name : <input type="text" th:field ="*{firstName}" />
+
+        <br><br>
+
+        Last Name : <input type="text" th:field ="*{lastName}" />
+
+        <br><br>
+
+        Country :
+        <select th:field = "*{country}">
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"/>
+        </select>
+
+        <br><br>
+
+        Favorite Programming Language:
+
+        <input type="radio" th:field="*{favoriteLanguage}"
+                            th:each="templang : ${programmingLanguage}"
+                            th:value="${templang}"
+                            th:text="${templang}"/>
+
+        <!--
+
+        <input type="radio" th:field="*{favoriteLanguage}" th:value="Go">Go</input>
+        <input type="radio" th:field="*{favoriteLanguage}" th:value="Java">Java</input>
+        <input type="radio" th:field="*{favoriteLanguage}" th:value="C">C</input>
+
+        <br><br>
+        -->
+
+        <br><br>
+
+        Favorite Operating System:
+
+        <input type="checkbox" th:field="*{favoriteSystem}"
+               th:each="tempSystem : ${operatingSystem}"
+               th:value="${tempSystem}"
+               th:text="${tempSystem}" />
+
+        <!--
+        <input type="checkbox" th:field="*{favoriteSystem}" th:value="Linux">Linux</input>
+        <input type="checkbox" th:field="*{favoriteSystem}" th:value="macOs">masOs</input>
+        <input type="checkbox" th:field="*{favoriteSystem}" th:value=" 'Microsoft Windows' ">Microsoft Windows</input>
+        -->
+
+        <br><br>
+
+        <input type="submit" value="submit">
+</form>
+</body>
+
+</html>
